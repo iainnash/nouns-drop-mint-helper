@@ -19,6 +19,6 @@ interface IZora1155 {
     ) external;
     function grantRole(bytes32, address) external;
     function hasRole(bytes32, address) external view returns (bool);
-    function PERMISSION_BIT_ADMIN() external returns (uint256);
-    function PERMISSION_BIT_MINTER() external returns (uint256);
+    function PERMISSION_BIT_ADMIN() external returns (bytes32);
+    function PERMISSION_BIT_MINTER() external returns (bytes32);
 }
