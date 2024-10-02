@@ -25,9 +25,10 @@ contract ZoraMinter {
     ) external {
         // TODO(): validate ownership from calling contract
         if (
-            !targetContract.hasRole(
-                targetContract.PERMISSION_BIT_ADMIN(),
-                msg.sender
+            !targetContract.isAdminOrRole(
+                msg.sender,
+                0,
+                targetContract.PERMISSION_BIT_ADMIN()
             )
         ) {
             revert UserNeedsToBeAdmin();
@@ -38,9 +39,10 @@ contract ZoraMinter {
             tokenURI,
             type(uint256).max
         );
-        targetContract.grantRole(
-            targetContract.PERMISSION_BIT_MINTER(),
-            address(timedSale)
+        targetContract.addPermission(
+            0,
+            address(timedSale),
+            targetContract.PERMISSION_BIT_MINTER()
         );
         targetContract.callSale(
             tokenId,
